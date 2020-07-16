@@ -25,3 +25,4 @@ Suggests:
     testthat
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.0
+BugReports: https://github.com/magnusdv/paramlink2/issues
