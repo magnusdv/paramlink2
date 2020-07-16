@@ -1,6 +1,6 @@
 Package: paramlink2
 Type: Package
-Title: Parametric linkage analysis
+Title: Parametric Linkage Analysis
 Version: 0.9
 Authors@R: person("Magnus Dehli", "Vigeland", 
                   email = "m.d.vigeland@medisin.uio.no", 
