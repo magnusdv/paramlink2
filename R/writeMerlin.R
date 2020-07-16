@@ -1,0 +1,82 @@
+###########################################
+# This function is mostly copied from
+# pedprobr:::writePed_merlin(), but is
+# modified to accommodate `aff` and `model`
+###########################################
+
+#' @importFrom utils write.table
+.writeMerlin = function(x, aff, model, map = NULL, prefix, verbose = TRUE) {
+
+  # File names with extensions
+  ext = c("ped", "map", "dat", "freq", "model")
+  fnames = paste(prefix, ext, sep = ".")
+  names(fnames) = ext
+
+  # ped file
+  if(is.pedList(x)) {
+    pedmatr = do.call(rbind, lapply(x, as.matrix, include.attrs = FALSE))
+    x = x[[1]] # for later stuff
+  } else {
+    pedmatr = as.matrix(x, include.attrs = FALSE)
+  }
+
+  # add famid and affection status
+  if(length(aff) != nrow(pedmatr))
+    stop2("`aff` is incompatible with the pedigree matrix")
+  pedmatr = cbind(1, pedmatr[, 1:4], aff, pedmatr[, -(1:4)])
+
+  # write
+  write(t.default(pedmatr), file = fnames[["ped"]], ncolumns = ncol(pedmatr))
+  if(verbose) message("File written: ", fnames[["ped"]])
+
+  # map file
+  if(is.null(map))
+    map = getMap(x, na.action = 1, verbose = verbose)
+  else
+    names(map) = toupper(names(map))
+
+  write.table(map, file = fnames[["map"]], col.names = FALSE, row.names = FALSE, quote = FALSE)
+  if(verbose) message("File written: ", fnames[["map"]])
+
+  # dat file
+  datmatr = cbind(c("A", rep("M", nrow(map))), c("disease",  map$MARKER))
+  write.table(datmatr, file = fnames[["dat"]], col.names = FALSE, row.names = FALSE, quote = FALSE)
+  if(verbose) message("File written: ", fnames[["dat"]])
+
+  # freq file
+  nalls = nAlleles(x)
+  L = sum(nalls) + length(nalls)
+  cum = cumsum(c(1, nalls + 1))
+  length(cum) = length(nalls)  #remove last
+
+  col1 = rep("A", L)
+  col1[cum] = "M"
+
+  col2 = character(L)
+  col2[cum] = map$MARKER
+
+  allalleles = unlist(lapply(nalls, seq_len)) # numerical allele names for merlin!
+  col2[-cum] = allalleles
+
+  col3 = character(L)
+  allfreqs = unlist(lapply(x$MARKERS, afreq))
+  col3[-cum] = format(allfreqs, scientifit = FALSE, digits = 6)
+
+  freqmatr = cbind(col1, col2, col3)
+  write.table(freqmatr, file = fnames[["freq"]], col.names = FALSE, row.names = FALSE, quote = FALSE)
+  if(verbose) message("File written: ", fnames[["freq"]])
+
+  # model file
+  dfreq = format(model$dfreq, scientific = F, decimal.mark = ".")
+
+  # if X, use female penetr. (Works in MINX as long as male/female are equal)
+  penet = if (model$chrom == "X") model$penetrances$female else model$penetrances
+  penet = paste(format(penet, scientific = F, decimal.mark = "."), collapse = ",")
+
+  mod = c("disease", dfreq, penet, "my_model")
+  write(mod, file = fnames[["model"]], sep = " \t", ncolumns = 4)
+
+  # return file names
+  invisible(unname(fnames))
+}
+

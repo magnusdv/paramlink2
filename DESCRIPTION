@@ -1,0 +1,27 @@
+Package: paramlink2
+Type: Package
+Title: Parametric linkage analysis
+Version: 0.9
+Authors@R: person("Magnus Dehli", "Vigeland", 
+                  email = "m.d.vigeland@medisin.uio.no", 
+                  role = c("aut", "cre"),
+                  comment = c(ORCID = "0000-0002-9134-4962"))
+Description: Parametric linkage analysis of monogenic traits in medical 
+    pedigrees. Features include singlepoint analysis, multipoint analysis 
+    (through a wrapper to the 'MERLIN' software), visualisation of LOD 
+    scores and summaries of linkage peaks.
+License: GPL-3
+URL: https://github.com/magnusdv/pedprobr
+Encoding: UTF-8
+Language: en-GB
+LazyData: true
+Depends: 
+    R (>= 3.5),
+    pedtools
+Imports: 
+    pedprobr,
+    forrel
+Suggests: 
+    testthat
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.0

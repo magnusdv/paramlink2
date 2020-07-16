@@ -1,0 +1,30 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# paramlink2
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of **paramlink2** is to perform parametric linkage analysis in medical pedigrees.
+
+## Installation
+
+You can install the development version of **paramlink2** from GitHub with:
+```{r, eval = FALSE}
+# install.packages("devtools") # install devtools if needed
+devtools::install_github("magnusdv/paramlink2")
+```
+
