@@ -11,7 +11,7 @@ Description: Parametric linkage analysis of monogenic traits in medical
     (through a wrapper to the 'MERLIN' software), visualisation of LOD 
     scores and summaries of linkage peaks.
 License: GPL-3
-URL: https://github.com/magnusdv/pedprobr
+URL: https://github.com/magnusdv/paramlink2
 Encoding: UTF-8
 Language: en-GB
 LazyData: true
