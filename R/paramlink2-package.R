@@ -10,3 +10,6 @@
 #'
 #' @name paramlink2
 NULL
+
+# Allow longer warning messages (from MERLIN)
+options(warning.length = 8000L)
