@@ -15,6 +15,9 @@
 #'   Alternatively, a list of vectors named `affected` and (optionally)
 #'   `unaffected`.
 #' @param model A `disModel` object, typically created with [diseaseModel()].
+#' @param liability NULL (default) or a vector of length `pedsize(x)`
+#'   indicating the liability class (a row number of `model$penetrances`) of
+#'   each individual.
 #' @param markers A vector of marker names or indices referring to markers
 #'   attached to `x`. By default all markers are included.
 #' @param rho A number between 0 and 0.5 (inclusive); the hypothesised
@@ -49,8 +52,11 @@
 #'
 #' @importFrom pedprobr likelihood
 #' @export
-lod = function(x, aff, model, markers = NULL, rho = 0, maxOnly = NA,
+lod = function(x, aff, model, rho = 0, liability = NULL, markers = NULL, maxOnly = NA,
                loop_breakers = NULL, peelOrder = NULL, verbose = FALSE) {
+
+  if(model$chrom == "X")
+    stop2("X-linked disease models are not implemented at the moment.")
 
   if (is.singleton(x))
     stop2("This function is not applicable to singleton objects.")
@@ -85,17 +91,17 @@ lod = function(x, aff, model, markers = NULL, rho = 0, maxOnly = NA,
   # Convert aff into vector of 0-1-2 status
   aff = fixAff(x, aff, verbose = verbose)
 
+  # Liability classes
+  liability = liability %||% rep(1, pedsize(x))
+
   peel_MD = function(dat, nuc) .peel_MM_AUT(dat, nuc, rho = rho)
   peel0 = function(dat, nuc) .peel_MM_AUT(dat, nuc, rho = 0.5)
   peelOrder = peelingOrder(x)
 
-  m = x$MARKERS[[1]]
-  startDat = startdata_MD_AUT(x, m, aff, model)
-
   peelProcess = pedprobr:::peelingProcess
 
   lods = vapply(x$MARKERS, function(m) {
-      startDat = startdata_MD_AUT(x, m, aff, model)
+      startDat = startdata_MD_AUT(x, m, aff, model = model, liability = liability)
 
       # Numerator
       numer = peelProcess(x, m, startdata = startDat, peeler = peel_MD, peelOrder = peelOrder)

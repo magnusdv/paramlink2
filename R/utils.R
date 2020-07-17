@@ -87,3 +87,4 @@ fixAff = function(x, aff, verbose = FALSE) {
 
   aff
 }
+

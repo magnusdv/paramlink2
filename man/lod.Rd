@@ -8,8 +8,9 @@ lod(
   x,
   aff,
   model,
-  markers = NULL,
   rho = 0,
+  liability = NULL,
+  markers = NULL,
   maxOnly = NA,
   loop_breakers = NULL,
   peelOrder = NULL,
@@ -26,11 +27,15 @@ Alternatively, a list of vectors named \code{affected} and (optionally)
 
 \item{model}{A \code{disModel} object, typically created with \code{\link[=diseaseModel]{diseaseModel()}}.}
 
-\item{markers}{A vector of marker names or indices referring to markers
-attached to \code{x}. By default all markers are included.}
-
 \item{rho}{A number between 0 and 0.5 (inclusive); the hypothesised
 recombination ratio between the marker and the disease locus.}
+
+\item{liability}{NULL (default) or a vector of length \code{pedsize(x)}
+indicating the liability class (a row number of \code{model$penetrances}) of
+each individual.}
+
+\item{markers}{A vector of marker names or indices referring to markers
+attached to \code{x}. By default all markers are included.}
 
 \item{maxOnly}{a logical indicating whether only the maximum LOD score should
 be returned. By default this is always done if the number of markers is 1.}

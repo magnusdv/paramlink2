@@ -1,5 +1,5 @@
 
-startdata_MD_AUT = function(x, m, affcode, model, eliminate = 1) {
+startdata_MD_AUT = function(x, m, affcode, model, liability, eliminate = 1) {
   nInd = pedsize(x)
 
   glist = pedprobr:::.buildGenolist(x, marker = m, eliminate)
@@ -15,6 +15,16 @@ startdata_MD_AUT = function(x, m, affcode, model, eliminate = 1) {
   isFounder = logical(nInd)
   isFounder[founders(x, internal = TRUE)] = TRUE
   impossible = FALSE
+
+  dfreq = model$dfreq
+
+  ### Penetrances & liability
+  penetMat = model$penetrances
+  if(!is.matrix(penetMat) && ncol(penetMat) == 3)
+    stop2("The `penetrances` model is not a matrix with 3 columns")
+
+  if(!all(liability %in% 1:nrow(penetMat)))
+    stop2("Illegal liability class: ", setdiff(liability, 1:nrow(penetMat)))
 
   dat = lapply(1:nInd, function(i) {
 
@@ -37,9 +47,11 @@ startdata_MD_AUT = function(x, m, affcode, model, eliminate = 1) {
 
     g = list(pat1 = pat1, mat1 = mat1, pat2 = pat2, mat2 = mat2)
 
+    penet.i = penetMat[liability[i], ]
+
     # Add probabilities
-    prob = startprob_MD_AUT(g, aff = affcode[i], model = model,
-                            afreq = afreq, founder = isFounder[i])
+    prob = startprob_MD_AUT(g, aff = affcode[i], penetrances = penet.i,
+                            dfreq = dfreq,  afreq = afreq, founder = isFounder[i])
     g$prob = prob
 
     keep = prob > 0
@@ -59,25 +71,24 @@ startdata_MD_AUT = function(x, m, affcode, model, eliminate = 1) {
 }
 
 
-startprob_MD_AUT = function(g, aff, model, afreq, founder) {
+startprob_MD_AUT = function(g, aff, penetrances, dfreq, afreq, founder) {
   mpat = g$pat1
   mmat = g$mat1
   dpat = g$pat2
   dmat = g$mat2
 
   # Number of disease alleles: either 0, 1 or 2 for each genotype
-  d.no = dpat + dmat - 2 # TODO: Burde d-locus ha N=0, D=1?
+  d.no = dpat + dmat - 2
 
   # Assign prob at disease locus, using the penetrance values
   prob = switch(aff + 1,
                 rep.int(1, length(d.no)),            # aff = 0: unknown
-                (1 - model$penetrances)[d.no + 1],   # aff = 1: healthy
-                model$penetrances[d.no + 1])         # aff = 2: affected
+                (1 - penetrances)[d.no + 1],   # aff = 1: healthy
+                penetrances[d.no + 1])         # aff = 2: affected
 
   # If founder, multiply with HW probs at both loci
   if (founder) {
     freqM = afreq[mpat] * afreq[mmat] * ((mpat != mmat) + 1)
-    dfreq = model$dfreq
     freqD = dfreq^d.no * (1 - dfreq)^(2 - d.no)
     prob = prob * freqM * freqD
   }

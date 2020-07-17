@@ -19,11 +19,15 @@ arguments), or one of the integers 1-4:
 \item{chrom}{Either "AUTOSOMAL" or "X". Lower case versions are allowed and
 will be converted automatically.}
 
-\item{penetrances}{If \code{chrom = "AUTOSOMAL"}: a numeric of length 3 - \verb{(f0, f1, f2)} - where \code{fi} is the probability of being affected given \code{i}
-disease alleles.
+\item{penetrances}{For autosomal models, a numeric of length 3 corresponding
+to \verb{(f0, f1, f2)}, where \code{fi} is the probability of being affected given
+\code{i} disease alleles. It can also be a matrix with 3 columns, in which case
+each row represents a liability class.
 
-If \code{chrom = "X"}: a list of two vectors, of lengths 2 and 3, containing the
-penetrances for males and females, respectively: \code{penetrances = list(male = c(f0, f1), female = c(f0, f1, f2))}.}
+For X-linked models, a list of two vectors named \code{male} and \code{female}, of
+lengths 2 and 3 respectively: \verb{(f0, f1)} for males and \verb{(f0, f1, f2)} for
+females. Alternatively, each list entry may be a matrix or data frame (with the same
+number of columns) where each row represents a liability class.}
 
 \item{dfreq}{A number in \verb{[0,1]}: The population frequency of the disease
 allele.}
