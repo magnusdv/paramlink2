@@ -89,18 +89,24 @@ returned in R as a \link{linkres} object.
 \donttest{
 ### Requires MERLIN to be installed ###
 
-x = nuclearPed(3)
-x = setMarkers(x, marker(x, geno = c("1/2", "1/1", "1/2", "1/2", "1/2")))
+x = nuclearPed(3, sex = c(1,2,2))
+x = setMarkers(x, marker(x, geno = c("1/1", "1/2", "1/2", "1/2", "1/2")))
 
-aff = c(1, 3:5)
+### Simple AD example
+aff = 2:5
 mod = diseaseModel("AD")
 
 merlinLod(x, aff, mod)
 
-# With liability classes
+### With liability classes
+aff2 = 2:4
 mod2 = diseaseModel("AD", penetrances = cbind(f0 = 0, f1 = 1:0, f2 = 1:0))
+merlinLod(x, aff2, mod2, liability = c(1,1,1,1,2))
 
-merlinLod(x, aff = c(1,3,4), mod2, liability = c(1,1,1,1,2))
+### X
+mod3 = diseaseModel("XR")
+aff3 = 3:5
+merlinLod(x, aff3, mod3)
 }
 
 }
