@@ -13,28 +13,20 @@
 #' The resulting multipoint LOD scores are extracted from the output and
 #' returned in R as a [linkres] object.
 #'
-#' @param x A `ped` object
-#' @param aff A vector showing the affection status of each pedigree member (2 =
-#'   affected, 1 = unaffected, 0 = unknown).
-#' @param model A `disModel` object.
+#' @inheritParams lod
 #' @param map A data frame with columns according to MERLIN format for map
 #'   files.
-#' @param markers A vector of marker names or indices. By default, all markers
-#'   are used.
 #' @param rho A numeric with values between 0 and 0.5: The recombination
 #'   value(s) for which the LOD score is computed. The value of `rho` is
 #'   converted to centiMorgans using Haldane's map function and included in the
 #'   MERLIN command using the `--position` parameter.
 #'
 #'   Note: This parameter only works when `markers` has length 1.
-#' @param maxOnly a logical indicating whether only the maximum LOD score should
-#'   be returned. By default this is always done if the number of markers is 1.
 #' @param options A character with additional options to the MERLIN command.
 #' @param dir Path to a directory where the MERLIN input files should be
 #'   created.
 #' @param cleanup A logical indicating if MERLIN files should be removed after
 #'   use. Default: TRUE.
-#' @param verbose A logical.
 #' @param \dots Further arguments passed on to [pedprobr::merlin()].
 #'
 #' @author Magnus Dehli Vigeland
@@ -46,29 +38,33 @@
 #'   number is returned.
 #'
 #'   Otherwise a `linkres` object similar to the output of [lod()], but with an
-#'   addition column `CM`.
+#'   additional column `CM`.
 #'
 #' @examples
 #'
 #' \donttest{
 #' ### Requires MERLIN to be installed ###
 #'
-#' x = nuclearPed(2)
-#' x = setMarkers(x, marker(x))
-#' genotype(x, 1, c(1,2:4)) = 1:2
-#' genotype(x, 1, 2) = 1
+#' x = nuclearPed(3)
+#' x = setMarkers(x, marker(x, geno = c("1/2", "1/1", "1/2", "1/2", "1/2")))
 #'
-#' aff = c(2,1,2,2)
-#' model = diseaseModel(model = "AD")
+#' aff = c(1, 3:5)
+#' mod = diseaseModel("AD")
 #'
-#' merlinLod(x, aff, model)
+#' merlinLod(x, aff, mod)
+#'
+#' # With liability classes
+#' mod2 = diseaseModel("AD", penetrances = cbind(f0 = 0, f1 = 1:0, f2 = 1:0))
+#'
+#' merlinLod(x, aff = c(1,3,4), mod2, liability = c(1,1,1,1,2))
 #' }
 #'
 #' @importFrom pedprobr merlin
 #' @importFrom utils read.table
 #' @export
 merlinLod = function(x, aff, model, map = NULL, markers = NULL,
-                     rho = 0, maxOnly = NA, options = "", dir  = ".",
+                     rho = 0, liability = NULL,
+                     maxOnly = NA, options = "", dir  = ".",
                      cleanup = TRUE, verbose = FALSE, ...) {
 
   if (!is.null(markers))
@@ -86,10 +82,18 @@ merlinLod = function(x, aff, model, map = NULL, markers = NULL,
   # Convert `aff` to status vector
   aff = fixAff(x, aff, verbose = verbose)
 
+  # Liability classes
+  liability = liability %||% rep(1, pedsize(x))
+
+  # If no map - create dummy map
+  if(is.null(map))
+    map = getMap(x, na.action = 1, verbose = verbose)
+
   prefix = file.path(dir, "_merlin")
 
   # Write files here (not by pedprobr::merlin) in order to include aff and model.
-  merlinfiles = .writeMerlin(x, aff, model, map = map, prefix = prefix, verbose = verbose)
+  merlinfiles = .writeMerlin(x, aff, model = model, liability = liability,
+                             map = map, prefix = prefix, verbose = verbose)
 
   options = sprintf("--model %s.model --tabulate --markerNames --quiet", prefix)
 
@@ -111,6 +115,11 @@ merlinLod = function(x, aff, model, map = NULL, markers = NULL,
     if (verbose)
       cat("MERLIN files removed\n")
   }
+
+  # Salvage output when "too unlikely model"
+  if(nrow(res) == 0)
+    res = data.frame(CHR = map$CHROM, POS = map$MB/100,
+                     LABEL = map$MARKER, LOD = -Inf)
 
   # Quick return if `maxOnly`
   if(maxOnly) {

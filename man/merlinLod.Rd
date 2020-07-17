@@ -11,6 +11,7 @@ merlinLod(
   map = NULL,
   markers = NULL,
   rho = 0,
+  liability = NULL,
   maxOnly = NA,
   options = "",
   dir = ".",
@@ -20,18 +21,20 @@ merlinLod(
 )
 }
 \arguments{
-\item{x}{A \code{ped} object}
+\item{x}{A \code{ped} object.}
 
-\item{aff}{A vector showing the affection status of each pedigree member (2 =
-affected, 1 = unaffected, 0 = unknown).}
+\item{aff}{A vector of length \code{pedsize(x)}, containing the affection status
+of each pedigree member (2 = affected; 1 = unaffected; 0 = unknown).
+Alternatively, a list of vectors named \code{affected} and (optionally)
+\code{unaffected}.}
 
-\item{model}{A \code{disModel} object.}
+\item{model}{A \code{disModel} object, typically created with \code{\link[=diseaseModel]{diseaseModel()}}.}
 
 \item{map}{A data frame with columns according to MERLIN format for map
 files.}
 
-\item{markers}{A vector of marker names or indices. By default, all markers
-are used.}
+\item{markers}{A vector of marker names or indices referring to markers
+attached to \code{x}. By default all markers are included.}
 
 \item{rho}{A numeric with values between 0 and 0.5: The recombination
 value(s) for which the LOD score is computed. The value of \code{rho} is
@@ -39,6 +42,10 @@ converted to centiMorgans using Haldane's map function and included in the
 MERLIN command using the \code{--position} parameter.
 
 Note: This parameter only works when \code{markers} has length 1.}
+
+\item{liability}{NULL (default) or a vector of length \code{pedsize(x)}
+indicating the liability class (a row number of \code{model$penetrances}) of
+each individual.}
 
 \item{maxOnly}{a logical indicating whether only the maximum LOD score should
 be returned. By default this is always done if the number of markers is 1.}
@@ -51,7 +58,7 @@ created.}
 \item{cleanup}{A logical indicating if MERLIN files should be removed after
 use. Default: TRUE.}
 
-\item{verbose}{A logical.}
+\item{verbose}{a logical: verbose output or not.}
 
 \item{\dots}{Further arguments passed on to \code{\link[pedprobr:merlin]{pedprobr::merlin()}}.}
 }
@@ -60,7 +67,7 @@ If the number of markers is 1, or if \code{maxOnly = TRUE}, a single
 number is returned.
 
 Otherwise a \code{linkres} object similar to the output of \code{\link[=lod]{lod()}}, but with an
-addition column \code{CM}.
+additional column \code{CM}.
 }
 \description{
 This function is a wrapper for the parametric linkage functionality of the
@@ -82,15 +89,18 @@ returned in R as a \link{linkres} object.
 \donttest{
 ### Requires MERLIN to be installed ###
 
-x = nuclearPed(2)
-x = setMarkers(x, marker(x))
-genotype(x, 1, c(1,2:4)) = 1:2
-genotype(x, 1, 2) = 1
+x = nuclearPed(3)
+x = setMarkers(x, marker(x, geno = c("1/2", "1/1", "1/2", "1/2", "1/2")))
 
-aff = c(2,1,2,2)
-model = diseaseModel(model = "AD")
+aff = c(1, 3:5)
+mod = diseaseModel("AD")
 
-merlinLod(x, aff, model)
+merlinLod(x, aff, mod)
+
+# With liability classes
+mod2 = diseaseModel("AD", penetrances = cbind(f0 = 0, f1 = 1:0, f2 = 1:0))
+
+merlinLod(x, aff = c(1,3,4), mod2, liability = c(1,1,1,1,2))
 }
 
 }
