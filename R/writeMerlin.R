@@ -15,11 +15,20 @@
   dfreq = format(model$dfreq, scientific = F, decimal.mark = ".")
 
   p = model$penetrances
-  if(model$chrom == "AUTOSOMAL")
+  if(model$chrom == "AUTOSOMAL") {
     pstr = apply(p, 1, function(v)
       paste(format(v, scientific = F, decimal.mark = "."), collapse = ","))
-  else
-    stop2("X-linked models not implemented yet")
+  }
+  else {
+    # MERLIN uses f0 and f2 for males: Insert zeroes in the middle
+    penmat = rbind(cbind(p$male[,1], 0, p$male[,2]), p$female)
+    pstr = apply(penmat, 1, function(v)
+      paste(format(v, scientific = F, decimal.mark = "."), collapse = ","))
+
+    # Adjust input liability NB!
+    fm = females(x, internal = TRUE)
+    liability[fm] = liability[fm] + nrow(p$male)
+  }
 
   nliab = length(pstr)
   mod = cbind(DISEASE = c("disease", paste("LIABILITY =", 1:nliab)[-nliab], "OTHERWISE"),
