@@ -34,7 +34,7 @@ included on each side of the peak.
 
 ## Use built-in dataset `dominantFam`
 x = dominantFam
-aff = list(affected = c(2,3,9,10,19,6,16,17))
+aff = list(affected = c(2,3,6,9,10,16,17,19))
 res = lod(x, aff, model = diseaseModel("AD"))
 
 # All peaks above LOD = 1.5
