@@ -12,9 +12,18 @@
 
 \method{summary}{linkres}(object, ...)
 
-\method{plot}{linkres}(x, chrom = NULL, type = "l", ylim = NULL, xlab = NULL, ylab = NULL, ...)
+\method{plot}{linkres}(
+  x,
+  chrom = NULL,
+  type = "l",
+  lwd = NA,
+  ylim = NULL,
+  xlab = NULL,
+  ylab = NULL,
+  ...
+)
 
-\method{points}{linkres}(x, chrom = NULL, type = "l", ...)
+\method{points}{linkres}(x, chrom = NULL, type = "l", lwd = NA, ...)
 }
 \arguments{
 \item{x, object}{A \code{linkres} object (normally produced by \code{\link[=lod]{lod()}} or
@@ -25,7 +34,7 @@
 \item{chrom}{(Optional) A numeric indicating which chromosomes to be included
 in the plot.}
 
-\item{type, ylim}{Graphical parameters passed on to \code{plot()}.}
+\item{lwd, type, ylim}{Graphical parameters passed on to \code{plot()}.}
 
 \item{xlab, ylab}{Axis labels.}
 }

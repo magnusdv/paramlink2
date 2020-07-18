@@ -7,7 +7,7 @@
 #'   [merlinLod()]).
 #' @param chrom (Optional) A numeric indicating which chromosomes to be included
 #'   in the plot.
-#' @param type,ylim Graphical parameters passed on to `plot()`.
+#' @param lwd,type,ylim Graphical parameters passed on to `plot()`.
 #' @param xlab,ylab Axis labels.
 #' @param \dots further arguments.
 #'
@@ -47,11 +47,10 @@ print.linkres = function(x, ...) {
 #' @rdname linkres
 #' @export
 summary.linkres = function(object, ...) {
-  x = object
-  nms = x$MARKERS
-  mx = max(x$LOD, na.rm = TRUE)
-  topMarkers = x$MARKER[mx - x$LOD < 1e-04]
-  cat("Max LOD score:", mx, "\n")
+  lods = object$LOD
+  maxlod = max(lods, na.rm = TRUE)
+  topMarkers = object$MARKER[maxlod - lods < 1e-04]
+  cat("Max LOD score:", maxlod, "\n")
   cat("Achieved at marker(s):", topMarkers, "\n")
 }
 
@@ -59,7 +58,7 @@ summary.linkres = function(object, ...) {
 #' @rdname linkres
 #' @importFrom graphics abline axis
 #' @export
-plot.linkres = function(x, chrom = NULL, type = "l",
+plot.linkres = function(x, chrom = NULL, type = "l", lwd = NA,
                         ylim = NULL, xlab = NULL, ylab = NULL, ...) {
 
   x = x[order(x$CHROM, x$MB), , drop = FALSE]
@@ -105,8 +104,11 @@ plot.linkres = function(x, chrom = NULL, type = "l",
   ylab = ylab %||% "LOD"
   ylim = ylim %||% c(-1.2, max(c(3, LOD), na.rm = TRUE) + 0.3)
 
+  if(is.na(lwd))
+    lwd = switch(attr(x, "analysis"), Singlepoint = 1, Multipoint = 2)
+
   # Plot (without x axis)
-  plot(pos, pmax(LOD, ylim[1]), xaxt = "n", type = type,
+  plot(pos, pmax(LOD, ylim[1]), xaxt = "n", type = type, lwd = lwd,
        ylim = ylim, xlab = xlab, ylab = ylab, ...)
 
   # Line at y = 0
@@ -119,7 +121,7 @@ plot.linkres = function(x, chrom = NULL, type = "l",
 #' @rdname linkres
 #' @importFrom graphics points par
 #' @export
-points.linkres = function(x, chrom = NULL, type = "l", ...) {
+points.linkres = function(x, chrom = NULL, type = "l", lwd = NA, ...) {
 
   x = x[order(x$CHROM, x$MB), , drop = FALSE]
 
@@ -149,6 +151,9 @@ points.linkres = function(x, chrom = NULL, type = "l", ...) {
   ymin = par("usr")[3] + diff(par("usr")[3:4]) * 0.04 # default expansion
   LODtrunc = pmax(LOD, ymin)
 
+  if(is.na(lwd))
+    lwd = switch(attr(x, "analysis"), Singlepoint = 1, Multipoint = 2)
+
   # Add points to existing plot
-  points(pos, LODtrunc, type = type, ...)
+  points(pos, LODtrunc, type = type, lwd = lwd, ...)
 }

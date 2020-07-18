@@ -2,19 +2,20 @@
 startdata_MD_AUT = function(x, m, affcode, model, liability, eliminate = 1) {
   nInd = pedsize(x)
 
+  # Build genotype list in internal format
   glist = pedprobr:::.buildGenolist(x, marker = m, eliminate)
-  if (attr(glist, "impossible")) {
-    return(structure(list(), impossible = TRUE))
-  }
 
-  # Genotypes at dis locus (N=1; D=2). Same for all. TODO: Bedre med N=0, D=1?
+  # Return early if impossible
+  impossible = attr(glist, "impossible")
+  if (impossible)
+    return(structure(list(), impossible = TRUE))
+
+  # Genotypes at dis locus (N=1; D=2). Same for all.
   dlist0 = list(pat = c(1,1,2,2), mat = c(1,2,1,2))
-  dlist1 = list(pat = c(1,1,2), mat = c(1,2,2))
 
   afreq = afreq(m)
   isFounder = logical(nInd)
   isFounder[founders(x, internal = TRUE)] = TRUE
-  impossible = FALSE
 
   dfreq = model$dfreq
 
@@ -82,7 +83,7 @@ startprob_MD_AUT = function(g, aff, penetrances, dfreq, afreq, founder) {
 
   # Assign prob at disease locus, using the penetrance values
   prob = switch(aff + 1,
-                rep.int(1, length(d.no)),            # aff = 0: unknown
+                rep.int(1, length(d.no)),      # aff = 0: unknown
                 (1 - penetrances)[d.no + 1],   # aff = 1: healthy
                 penetrances[d.no + 1])         # aff = 2: affected
 

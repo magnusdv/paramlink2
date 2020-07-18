@@ -87,16 +87,14 @@ peakSummary = function(x, threshold, width = 1, physmap = NULL) {
 
     data.frame(
       CHROM = df$CHROM[1],
-      FROM_MARKER = df$MARKER[1],
-      TO_MARKER = df$MARKER[n],
-      FROM_MB = from_mb,
-      TO_MB = to_mb,
-      LEN = to_mb - from_mb,
+      FROM = df$MARKER[1],
+      TO = df$MARKER[n],
       N = n,
-      TELOMERIC = attr(df, "telomeric"),
-      FROM_LOD = round(df$LOD[1], 3),
-      MAX_LOD = round(max(df$LOD),3),
-      TO_LOD = round(df$LOD[n],3),
+      STA_MB = from_mb,
+      STO_MB = to_mb,
+      LEN = to_mb - from_mb,
+      TELO = attr(df, "telomeric"),
+      MAXLOD = round(max(df$LOD),3),
       stringsAsFactors = FALSE
     )
   })
@@ -108,8 +106,8 @@ peakSummary = function(x, threshold, width = 1, physmap = NULL) {
     if (is.character(physmap))
       physmap = read.table(physmap, header = T, as.is = TRUE)
     if (is.data.frame(physmap)) {
-      from_bp = physmap[match(a$FROM_MARKER, physmap[, 1]), 3]
-      to_bp = physmap[match(a$TO_MARKER, physmap[, 1]), 3]
+      from_bp = physmap[match(a$FROM, physmap[, 1]), 3]
+      to_bp = physmap[match(a$TO, physmap[, 1]), 3]
       a = cbind(a, FROM_BP = from_bp, TO_BP = to_bp)
       a = a[, c(1:5, 12:13, 6:11)]
     }
