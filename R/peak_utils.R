@@ -53,7 +53,7 @@ lodPeaks = function(x, threshold, width = 1) {
       stp = stop_ind[i]
       telomeric = c(if (strt == 0) "start", if (stp > xchr_nrow) "end")
       if (length(telomeric) == 0)
-        telomeric = "no"
+        telomeric = ""
       strt = max(strt, 1)
       stp = min(stp, xchr_nrow)
       structure(xchr[strt:stp, , drop = FALSE], rownames = NULL, telomeric = telomeric)
@@ -90,8 +90,8 @@ peakSummary = function(x, threshold, width = 1, physmap = NULL) {
       FROM = df$MARKER[1],
       TO = df$MARKER[n],
       N = n,
-      STA_MB = from_mb,
-      STO_MB = to_mb,
+      FROM_MB = from_mb,
+      TO_MB = to_mb,
       LEN = to_mb - from_mb,
       TELO = attr(df, "telomeric"),
       MAXLOD = round(max(df$LOD),3),

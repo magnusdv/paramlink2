@@ -60,7 +60,9 @@ use. Default: TRUE.}
 
 \item{verbose}{a logical: verbose output or not.}
 
-\item{\dots}{Further arguments passed on to \code{\link[pedprobr:merlin]{pedprobr::merlin()}}.}
+\item{\dots}{Further arguments passed on to \code{\link[pedprobr:merlin]{pedprobr::merlin()}}. In
+particular, \code{merlinpath} should be supplied if the merlin executables are
+not on the system's search path.}
 }
 \value{
 If the number of markers is 1, or if \code{maxOnly = TRUE}, a single

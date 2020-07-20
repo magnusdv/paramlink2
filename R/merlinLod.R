@@ -27,7 +27,9 @@
 #'   created.
 #' @param cleanup A logical indicating if MERLIN files should be removed after
 #'   use. Default: TRUE.
-#' @param \dots Further arguments passed on to [pedprobr::merlin()].
+#' @param \dots Further arguments passed on to [pedprobr::merlin()]. In
+#'   particular, `merlinpath` should be supplied if the merlin executables are
+#'   not on the system's search path.
 #'
 #' @author Magnus Dehli Vigeland
 #' @seealso [lod()]

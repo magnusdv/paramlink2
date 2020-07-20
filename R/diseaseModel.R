@@ -144,7 +144,7 @@ print.disModel = function(x, ...) {
     if(nrow(pen) == 1)
       cat(sprintf("Penetrance: (f0, f1, f2) = (%s)\n", toString(pen)))
     else {
-      cat("Penetrance liability classes\n")
+      cat("Penetrance liability classes:\n")
       print(pen)
     }
   }
