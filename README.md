@@ -114,12 +114,12 @@ plot(lods)
 <img src="man/figures/README-singleLodGraph-1.png" width="100%" style="display: block; margin: auto;" />
 
 As typical for singlepoint scores, the graph is quite noisy and not easy
-to interpret, although we see indications of a peak. A cleaner picutre
-is given by *multipoint* analysis, which is available if you have MERLIN
-installed on your computer. A special wrapper, `merlinLod()` takes care
-of all the input and output files to MERLIN, so that we never have to
-leave R. Moreover, the syntax is similar to that of `lod()` except that
-we may add a linkage map of the markers.
+to interpret, although we see indications of a peak. A cleaner picture
+may be obtained by *multipoint* analysis, which is available if you have
+MERLIN installed on your computer. A special wrapper, `merlinLod()`
+takes care of all the input and output files to MERLIN, so that we never
+have to leave R. Moreover, the syntax is similar to that of `lod()`
+except that we may add a linkage map of the markers.
 
 ``` r
 lodsM = merlinLod(ped, aff = aff, model = modAD, map = map)
@@ -137,8 +137,8 @@ legend("topright", c("Multi", "Single"), col = c(2, 8), lwd = 2)
 <img src="man/figures/README-multiLodGraph-1.png" width="100%" style="display: block; margin: auto;" />
 
 This graph shows a convincing peak of LOD = 3, which is close to the
-traditional significance threshold LOD = 3.3 for AD disorders. Details
-about the peak and its location are obtained as follows:
+traditional significance threshold LOD = 3.3 for AD disorders. We print
+some details about the peak and its location:
 
 ``` r
 peakSummary(lodsM, threshold = 2)

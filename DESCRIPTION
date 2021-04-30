@@ -10,7 +10,7 @@ Description: Parametric linkage analysis of monogenic traits in medical
     pedigrees. Features include singlepoint analysis, multipoint analysis via 
     'MERLIN' (Abecasis et al. (2002) <doi:10.1038/ng786>), visualisation of LOD 
     scores and summaries of linkage peaks. Disease models may be specified to 
-    accomodate phenocopies, reduced penetrance and liability classes. 
+    accommodate phenocopies, reduced penetrance and liability classes. 
     'paramlink2' is part of the 'ped suite' ecosystem, presented in 
     'Pedigree Analysis in R' (Vigeland, 2021, ISBN:9780128244302).
 License: GPL-3
