@@ -22,7 +22,7 @@ knitr::opts_chunk$set(
 [![](https://cranlogs.r-pkg.org/badges/last-month/paramlink2?color=yellow)](https://cran.r-project.org/package=paramlink2)
 <!-- badges: end -->
 
-The goal of **paramlink2** is to perform parametric linkage analysis in medical pedigrees. Both singlepoint and multipoint LOD scores are supported (the latter requires [MERLIN](http://csg.sph.umich.edu/abecasis/merlin)). The package includes tools for visualising LOD scores and summarising peaks for use in downstream analysis.
+The goal of **paramlink2** is to perform parametric linkage analysis in medical pedigrees. Both singlepoint and multipoint LOD scores are supported (the latter requires [MERLIN](http://csg.sph.umich.edu/abecasis/merlin/)). The package includes tools for visualising LOD scores and summarising peaks for use in downstream analysis.
 
 **paramlink2** is part of the **ped suite** collection of packages for pedigree analysis in R, featured in the book [Pedigree Analysis in R](https://www.elsevier.com/books/pedigree-analysis-in-r/vigeland/978-0-12-824430-2) (Vigeland, 2021). Chapter 9 of this book gives an introduction to linkage analysis, and includes a detailed worked example using **paramlink2**.
 

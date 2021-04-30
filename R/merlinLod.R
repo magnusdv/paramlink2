@@ -34,7 +34,7 @@
 #' @author Magnus Dehli Vigeland
 #' @seealso [lod()]
 #'
-#' @references \url{http://csg.sph.umich.edu/abecasis/Merlin}
+#' @references \url{http://csg.sph.umich.edu/abecasis/Merlin/}
 #'
 #' @return If the number of markers is 1, or if `maxOnly = TRUE`, a single
 #'   number is returned.

@@ -14,7 +14,7 @@ status](https://www.r-pkg.org/badges/version/paramlink2)](https://CRAN.R-project
 The goal of **paramlink2** is to perform parametric linkage analysis in
 medical pedigrees. Both singlepoint and multipoint LOD scores are
 supported (the latter requires
-[MERLIN](http://csg.sph.umich.edu/abecasis/merlin)). The package
+[MERLIN](http://csg.sph.umich.edu/abecasis/merlin/)). The package
 includes tools for visualising LOD scores and summarising peaks for use
 in downstream analysis.
 

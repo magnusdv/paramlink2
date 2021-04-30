@@ -127,7 +127,7 @@ merlinLod(x, aff = 3:5, model = diseaseModel("XR"))
 
 }
 \references{
-\url{http://csg.sph.umich.edu/abecasis/Merlin}
+\url{http://csg.sph.umich.edu/abecasis/Merlin/}
 }
 \seealso{
 \code{\link[=lod]{lod()}}
