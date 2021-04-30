@@ -14,7 +14,7 @@ merlinLod(
   liability = NULL,
   maxOnly = NA,
   options = "",
-  dir = ".",
+  dir = tempdir(),
   cleanup = TRUE,
   verbose = FALSE,
   ...
@@ -79,7 +79,7 @@ pointed to in the PATH environment variable.
 }
 \details{
 By default the following MERLIN command is run (via a call to \code{\link[=system]{system()}})
-after creating appropriate files in the current working directory:
+after creating appropriate files in a temporary (or user specified) directory:
 
 \preformatted{% merlin -p _merlin.ped -d _merlin.dat -m _merlin.map -f
 _merlin.freq --model _merlin.model --tabulate --markerNames --quiet}
