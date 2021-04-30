@@ -12,7 +12,7 @@ lod(
   liability = NULL,
   markers = NULL,
   maxOnly = NA,
-  loop_breakers = NULL,
+  loopBreakers = NULL,
   peelOrder = NULL,
   verbose = FALSE
 )
@@ -40,7 +40,7 @@ attached to \code{x}. By default all markers are included.}
 \item{maxOnly}{a logical indicating whether only the maximum LOD score should
 be returned. By default this is always done if the number of markers is 1.}
 
-\item{loop_breakers}{A vector of ID labels indicating loop breakers. (Only
+\item{loopBreakers}{A vector of ID labels indicating loop breakers. (Only
 relevant for inbred pedigrees.)}
 
 \item{peelOrder}{For internal use.}

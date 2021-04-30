@@ -5,7 +5,7 @@
 
   faDat = dat[[fa]]
   moDat = dat[[mo]]
-  likel = faDat$prob %*% t.default(moDat$prob)
+  likel = tcrossprod(faDat$prob, moDat$prob) # faDat$prob %*% t.default(moDat$prob)
   faLen = nrow(likel)
   moLen = ncol(likel)
 

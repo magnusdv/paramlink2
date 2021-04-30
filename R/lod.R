@@ -24,7 +24,7 @@
 #'   recombination ratio between the marker and the disease locus.
 #' @param maxOnly a logical indicating whether only the maximum LOD score should
 #'   be returned. By default this is always done if the number of markers is 1.
-#' @param loop_breakers A vector of ID labels indicating loop breakers. (Only
+#' @param loopBreakers A vector of ID labels indicating loop breakers. (Only
 #'   relevant for inbred pedigrees.)
 #' @param peelOrder For internal use.
 #' @param verbose a logical: verbose output or not.
@@ -53,7 +53,7 @@
 #' @importFrom pedprobr likelihood
 #' @export
 lod = function(x, aff, model, rho = 0, liability = NULL, markers = NULL, maxOnly = NA,
-               loop_breakers = NULL, peelOrder = NULL, verbose = FALSE) {
+               loopBreakers = NULL, peelOrder = NULL, verbose = FALSE) {
 
   if(model$chrom == "X")
     stop2("X-linked disease models are not implemented at the moment.")
@@ -84,7 +84,7 @@ lod = function(x, aff, model, rho = 0, liability = NULL, markers = NULL, maxOnly
     maxOnly = nMarkers(x) == 1
 
   if(hasUnbrokenLoops(x)) {
-    x = breakLoops(x, loop_breakers = loop_breakers, verbose = verbose)
+    x = breakLoops(x, loopBreakers = loopBreakers, verbose = verbose)
     markers = x$MARKERS
   }
 
