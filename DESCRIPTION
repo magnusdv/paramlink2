@@ -7,9 +7,12 @@ Authors@R: person("Magnus Dehli", "Vigeland",
                   role = c("aut", "cre"),
                   comment = c(ORCID = "0000-0002-9134-4962"))
 Description: Parametric linkage analysis of monogenic traits in medical 
-    pedigrees. Features include singlepoint analysis, multipoint analysis 
-    (through a wrapper to the 'MERLIN' software), visualisation of LOD 
-    scores and summaries of linkage peaks.
+    pedigrees. Features include singlepoint analysis, multipoint analysis via 
+    'MERLIN' (Abecasis et al. (2002) <doi:10.1038/ng786>), visualisation of LOD 
+    scores and summaries of linkage peaks. Disease models may be specified to 
+    accomodate phenocopies, reduced penetrance and liability classes. 
+    'paramlink2' is part of the 'ped suite' ecosystem, presented in 
+    'Pedigree Analysis in R' (Vigeland, 2021, ISBN:9780128244302).
 License: GPL-3
 URL: https://github.com/magnusdv/paramlink2
 Encoding: UTF-8
@@ -19,10 +22,9 @@ Depends:
     R (>= 3.5),
     pedtools
 Imports: 
-    pedprobr,
-    forrel
+    pedprobr
 Suggests: 
     testthat
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 BugReports: https://github.com/magnusdv/paramlink2/issues
