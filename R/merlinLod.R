@@ -34,7 +34,7 @@
 #' @author Magnus Dehli Vigeland
 #' @seealso [lod()]
 #'
-#' @references \url{http://csg.sph.umich.edu/abecasis/Merlin/}
+#' @references \url{http://csg.sph.umich.edu/abecasis/Merlin}
 #'
 #' @return If the number of markers is 1, or if `maxOnly = TRUE`, a single
 #'   number is returned.
@@ -45,26 +45,39 @@
 #' @examples
 #'
 #' \donttest{
-#' ### Requires MERLIN to be installed ###
+#' #---------------------------------
+#' # Requires MERLIN to be installed
+#' #---------------------------------
 #'
+#' ### Built-in example: 248 SNPs on chrom1
+#'
+#' data(dominant1)
+#' ped = dominant1$ped
+#' aff = dominant1$aff
+#' model = diseaseModel("AD")
+#'
+#' lodsM = merlinLod(ped, aff = aff, model = model, map = dominant1$map)
+#'
+#' # LOD score graph
+#' plot(lodsM)
+#'
+#'
+#' ### Single-marker examples (can also be solved with `lod()`)
+#'
+#' # Pedigree with a single marker
 #' x = nuclearPed(3, sex = c(1,2,2))
 #' x = setMarkers(x, marker(x, geno = c("1/1", "1/2", "1/2", "1/2", "1/2")))
 #'
-#' ### Simple AD example
-#' aff = 2:5
-#' mod = diseaseModel("AD")
+#' # Simple AD model
+#' merlinLod(x, aff = 2:5, model = diseaseModel("AD"))
 #'
-#' merlinLod(x, aff, mod)
+#' # With liability classes
+#' mod = diseaseModel("AD", penetrances = cbind(f0 = 0, f1 = 1:0, f2 = 1:0))
+#' merlinLod(x, aff = 2:4, mod, liability = c(1,1,1,1,2))
 #'
-#' ### With liability classes
-#' aff2 = 2:4
-#' mod2 = diseaseModel("AD", penetrances = cbind(f0 = 0, f1 = 1:0, f2 = 1:0))
-#' merlinLod(x, aff2, mod2, liability = c(1,1,1,1,2))
+#' # X
+#' merlinLod(x, aff = 3:5, model = diseaseModel("XR"))
 #'
-#' ### X
-#' mod3 = diseaseModel("XR")
-#' aff3 = 3:5
-#' merlinLod(x, aff3, mod3)
 #' }
 #'
 #' @importFrom pedprobr merlin
