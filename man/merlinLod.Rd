@@ -23,10 +23,11 @@ merlinLod(
 \arguments{
 \item{x}{A \code{ped} object.}
 
-\item{aff}{A vector of length \code{pedsize(x)}, containing the affection status
-of each pedigree member (2 = affected; 1 = unaffected; 0 = unknown).
-Alternatively, a list of vectors named \code{affected} and (optionally)
-\code{unaffected}.}
+\item{aff}{A vector naming the affected pedigree members, or a numeric vector
+of length \code{pedsize(x)} with affection statuses for all pedigree members (2
+= affected; 1 = unaffected; 0 = unknown). Alternatively, \code{aff} can be a
+list of vectors, named \code{affected}, \code{unaffected} and \code{unknown}. It suffices
+to give (any) two of these vectors.}
 
 \item{model}{A \code{disModel} object, typically created with \code{\link[=diseaseModel]{diseaseModel()}}.}
 
@@ -43,9 +44,9 @@ MERLIN command using the \code{--position} parameter.
 
 Note: This parameter only works when \code{markers} has length 1.}
 
-\item{liability}{NULL (default) or a vector of length \code{pedsize(x)}
-indicating the liability class (a row number of \code{model$penetrances}) of
-each individual.}
+\item{liability}{NULL (default) or a vector of length \code{pedsize(x)} indicating
+the liability class (a row number of \code{model$penetrances}) of each
+individual.}
 
 \item{maxOnly}{a logical indicating whether only the maximum LOD score should
 be returned. By default this is always done if the number of markers is 1.}

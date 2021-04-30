@@ -20,19 +20,20 @@ lod(
 \arguments{
 \item{x}{A \code{ped} object.}
 
-\item{aff}{A vector of length \code{pedsize(x)}, containing the affection status
-of each pedigree member (2 = affected; 1 = unaffected; 0 = unknown).
-Alternatively, a list of vectors named \code{affected} and (optionally)
-\code{unaffected}.}
+\item{aff}{A vector naming the affected pedigree members, or a numeric vector
+of length \code{pedsize(x)} with affection statuses for all pedigree members (2
+= affected; 1 = unaffected; 0 = unknown). Alternatively, \code{aff} can be a
+list of vectors, named \code{affected}, \code{unaffected} and \code{unknown}. It suffices
+to give (any) two of these vectors.}
 
 \item{model}{A \code{disModel} object, typically created with \code{\link[=diseaseModel]{diseaseModel()}}.}
 
 \item{rho}{A number between 0 and 0.5 (inclusive); the hypothesised
 recombination ratio between the marker and the disease locus.}
 
-\item{liability}{NULL (default) or a vector of length \code{pedsize(x)}
-indicating the liability class (a row number of \code{model$penetrances}) of
-each individual.}
+\item{liability}{NULL (default) or a vector of length \code{pedsize(x)} indicating
+the liability class (a row number of \code{model$penetrances}) of each
+individual.}
 
 \item{markers}{A vector of marker names or indices referring to markers
 attached to \code{x}. By default all markers are included.}

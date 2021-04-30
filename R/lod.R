@@ -10,14 +10,15 @@
 #' recombination ratio \eqn{\rho} between the marker and the disease locus.
 #'
 #' @param x A `ped` object.
-#' @param aff A vector of length `pedsize(x)`, containing the affection status
-#'   of each pedigree member (2 = affected; 1 = unaffected; 0 = unknown).
-#'   Alternatively, a list of vectors named `affected` and (optionally)
-#'   `unaffected`.
+#' @param aff A vector naming the affected pedigree members, or a numeric vector
+#'   of length `pedsize(x)` with affection statuses for all pedigree members (2
+#'   = affected; 1 = unaffected; 0 = unknown). Alternatively, `aff` can be a
+#'   list of vectors, named `affected`, `unaffected` and `unknown`. It suffices
+#'   to give (any) two of these vectors.
 #' @param model A `disModel` object, typically created with [diseaseModel()].
-#' @param liability NULL (default) or a vector of length `pedsize(x)`
-#'   indicating the liability class (a row number of `model$penetrances`) of
-#'   each individual.
+#' @param liability NULL (default) or a vector of length `pedsize(x)` indicating
+#'   the liability class (a row number of `model$penetrances`) of each
+#'   individual.
 #' @param markers A vector of marker names or indices referring to markers
 #'   attached to `x`. By default all markers are included.
 #' @param rho A number between 0 and 0.5 (inclusive); the hypothesised
