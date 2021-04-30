@@ -19,9 +19,9 @@
 #'
 #' @examples
 #'
-#' ## Use built-in dataset `dominantFam`
-#' x = dominantFam
-#' aff = list(affected = c(2,3,6,9,10,16,17,19))
+#' ## Use built-in dataset `dominant1`
+#' x = dominant1$ped
+#' aff = dominant1$aff
 #' res = lod(x, aff, model = diseaseModel("AD"))
 #'
 #' # All peaks above LOD = 1.5
