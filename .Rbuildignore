@@ -3,3 +3,4 @@
 ^README\.Rmd$
 ^R/unused$
 ^data-raw$
+^cran-comments\.md$
