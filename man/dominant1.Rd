@@ -32,16 +32,5 @@ lods = lod(ped, aff = aff, model = model)
 plot(lods)
 
 
-# Multipoint analysis if MERLIN is installed
-if(nzchar(Sys.which("merlin"))) {
-
-# MERLIN
-lodsM = merlinLod(ped, aff = aff, model = model, map = dominant1$map)
-
-# LOD score graph
-plot(lodsM)
-
-}
-
 }
 \keyword{datasets}

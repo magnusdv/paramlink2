@@ -50,21 +50,6 @@
 #'
 #' if(nzchar(Sys.which("merlin"))) {
 #'
-#' ### Built-in example: 248 SNPs on chrom1
-#'
-#' data(dominant1)
-#' ped = dominant1$ped
-#' aff = dominant1$aff
-#' model = diseaseModel("AD")
-#'
-#' lodsM = merlinLod(ped, aff = aff, model = model, map = dominant1$map)
-#'
-#' # LOD score graph
-#' plot(lodsM)
-#'
-#'
-#' ### Single-marker examples (can also be solved with `lod()`)
-#'
 #' # Pedigree with a single marker
 #' x = nuclearPed(3, sex = c(1,2,2))
 #' x = setMarkers(x, marker(x, geno = c("1/1", "1/2", "1/2", "1/2", "1/2")))
