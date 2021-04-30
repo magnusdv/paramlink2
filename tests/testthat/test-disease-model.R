@@ -1,4 +1,3 @@
-context("disease models")
 
 test_that("diseaseModel() catches errors", {
 

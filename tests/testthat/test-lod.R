@@ -1,4 +1,3 @@
-context("lod function")
 
 test_that("lod() catches bad `aff` input", {
   x = nuclearPed(1)
