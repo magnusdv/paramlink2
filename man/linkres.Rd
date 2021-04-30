@@ -61,6 +61,7 @@ lods = lod(x, aff, model = diseaseModel(model = "AD"))
 summary(lods)
 as.data.frame(lods)
 plot(lods)
+
 }
 \seealso{
 \code{\link[=lod]{lod()}}, \code{\link[=merlinLod]{merlinLod()}}, \code{\link[=lodPeaks]{lodPeaks()}}

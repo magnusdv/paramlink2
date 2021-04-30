@@ -33,6 +33,7 @@
 #' summary(lods)
 #' as.data.frame(lods)
 #' plot(lods)
+#'
 #' @name linkres
 NULL
 

@@ -44,10 +44,11 @@
 #'
 #' @examples
 #'
-#' \donttest{
 #' #---------------------------------
 #' # Requires MERLIN to be installed
 #' #---------------------------------
+#'
+#' if(nzchar(Sys.which("merlin"))) {
 #'
 #' ### Built-in example: 248 SNPs on chrom1
 #'
