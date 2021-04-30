@@ -1,6 +1,6 @@
-#' Single-point LOD score
+#' Singlepoint LOD score
 #'
-#' Calculates the single-point LOD scores of a pedigree for the specified
+#' Calculates the singlepoint LOD scores of a pedigree for the specified
 #' markers. The recombination ratio between the disease and marker loci can be
 #' either fixed or optimized.
 #'
@@ -8,6 +8,8 @@
 #' \frac{L(\rho)}{L(0.5)}}{% LOD(\rho) = log10 L(\rho)/L(0.5)} where
 #' \eqn{L(\rho)} denotes the likelihood of the observed marker genotypes given a
 #' recombination ratio \eqn{\rho} between the marker and the disease locus.
+#'
+#' The likelihoods are computed with the **pedprobr** package.
 #'
 #' @param x A `ped` object.
 #' @param aff A vector naming the affected pedigree members, or a numeric vector

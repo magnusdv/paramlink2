@@ -2,7 +2,7 @@
 % Please edit documentation in R/lod.R
 \name{lod}
 \alias{lod}
-\title{Single-point LOD score}
+\title{Singlepoint LOD score}
 \usage{
 lod(
   x,
@@ -56,7 +56,7 @@ Otherwise a \code{linkres} object, which is basically a data frame with columns
 \code{CHROM}, \code{MARKER}, \code{MB} and \code{LOD}.
 }
 \description{
-Calculates the single-point LOD scores of a pedigree for the specified
+Calculates the singlepoint LOD scores of a pedigree for the specified
 markers. The recombination ratio between the disease and marker loci can be
 either fixed or optimized.
 }
@@ -65,6 +65,8 @@ The LOD score of a marker is defined as \deqn{LOD(\rho) = \log\link{10}
 \frac{L(\rho)}{L(0.5)}}{\% LOD(\rho) = log10 L(\rho)/L(0.5)} where
 \eqn{L(\rho)} denotes the likelihood of the observed marker genotypes given a
 recombination ratio \eqn{\rho} between the marker and the disease locus.
+
+The likelihoods are computed with the \strong{pedprobr} package.
 }
 \examples{
 
