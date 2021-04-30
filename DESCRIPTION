@@ -1,7 +1,7 @@
 Package: paramlink2
 Type: Package
 Title: Parametric Linkage Analysis
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: person("Magnus Dehli", "Vigeland", 
                   email = "m.d.vigeland@medisin.uio.no", 
                   role = c("aut", "cre"),
