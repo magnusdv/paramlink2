@@ -1,11 +1,11 @@
 #' Singlepoint LOD score
 #'
-#' Calculates the singlepoint LOD scores of a pedigree for the specified
-#' markers. The recombination ratio between the disease and marker loci can be
-#' either fixed or optimized.
+#' Calculates the singlepoint log of the odds (LOD) scores of a pedigree for the
+#' specified markers, assuming a fixed recombination rate between the disease
+#' and each marker locus.
 #'
 #' The LOD score of a marker is defined as \deqn{LOD(\rho) = \log[10]
-#' \frac{L(\rho)}{L(0.5)}}{% LOD(\rho) = log10 L(\rho)/L(0.5)} where
+#' \frac{L(\rho)}{L(0.5)}}{% LOD(\rho) = \log_10 L(\rho)/L(0.5)} where
 #' \eqn{L(\rho)} denotes the likelihood of the observed marker genotypes given a
 #' recombination ratio \eqn{\rho} between the marker and the disease locus.
 #'
