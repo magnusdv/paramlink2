@@ -1,3 +1,3 @@
-# paramlink2 1.0.1
+# paramlink2 1.0.2
 
 * Initial CRAN release.
