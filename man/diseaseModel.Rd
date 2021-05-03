@@ -8,13 +8,16 @@ diseaseModel(model = NULL, chrom = NULL, penetrances = NULL, dfreq = NULL)
 }
 \arguments{
 \item{model}{An existing \code{disModel} object (to be modified by other
-arguments), or one of the integers 1-4:
+arguments), or one of the following two-letter keywords:
 \itemize{
-\item 1 = autosomal dominant; fully penetrant, dfreq = 1e-5
-\item 2 = autosomal recessive; fully penetrant, dfreq = 1e-5
-\item 3 = X-linked dominant; fully penetrant, dfreq = 1e-5
-\item 4 = X-linked recessive; fully penetrant, dfreq = 1e-5
-}}
+\item \code{AD} = autosomal dominant
+\item \code{AR} = autosomal recessive
+\item \code{XD} = X-linked dominant
+\item \code{XR} = X-linked recessive
+}
+
+In all of the above, the disease is assumed to be fully penetrant, and with
+a disease allele frequency of 1e-5.}
 
 \item{chrom}{Either "AUTOSOMAL" or "X". Lower case versions are allowed and
 will be converted automatically.}
@@ -26,8 +29,8 @@ each row represents a liability class.
 
 For X-linked models, a list of two vectors named \code{male} and \code{female}, of
 lengths 2 and 3 respectively: \verb{(f0, f1)} for males and \verb{(f0, f1, f2)} for
-females. Alternatively, each list entry may be a matrix or data frame (with the same
-number of columns) where each row represents a liability class.}
+females. Alternatively, each list entry may be a matrix or data frame (with
+the same number of columns) where each row represents a liability class.}
 
 \item{dfreq}{A number in \verb{[0,1]}: The population frequency of the disease
 allele.}
@@ -38,7 +41,7 @@ An object of class \code{disModel}, which is a list with entries \code{chrom},
 }
 \description{
 Create a disease model in form of a \code{disModel} object, for use in e.g.
-\code{\link[=lod]{lod()}}
+\code{\link[=lod]{lod()}}.
 }
 \examples{
 
@@ -60,7 +63,4 @@ stopifnot(identical(m3, m4))
 }
 \seealso{
 \code{\link[=lod]{lod()}}
-}
-\author{
-Magnus Dehli Vigeland
 }

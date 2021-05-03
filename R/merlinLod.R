@@ -31,7 +31,6 @@
 #'   particular, `merlinpath` should be supplied if the merlin executables are
 #'   not on the system's search path.
 #'
-#' @author Magnus Dehli Vigeland
 #' @seealso [lod()]
 #'
 #' @references \url{http://csg.sph.umich.edu/abecasis/Merlin/}

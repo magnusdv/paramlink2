@@ -23,7 +23,7 @@ name, chromosome and physical position.}
 A list of data frames.
 }
 \description{
-Identify and summarise LOD score peaks
+Identify and summarise LOD score peaks.
 }
 \details{
 A peak is defined as a run of at least \code{width} consecutive markers with LOD
@@ -32,19 +32,16 @@ included on each side of the peak.
 }
 \examples{
 
-## Use built-in dataset `dominant1`
-x = dominant1$ped
-aff = dominant1$aff
-res = lod(x, aff, model = diseaseModel("AD"))
+# Use built-in dataset `dominant1`
+lods = lod(x = dominant1$ped,
+           aff = dominant1$aff,
+           model = diseaseModel("AD"))
 
 # All peaks above LOD = 1.5
-lodPeaks(res, threshold = 1.5)
-peakSummary(res, threshold = 1.5)
+lodPeaks(lods, threshold = 1.5)
+peakSummary(lods, threshold = 1.5)
 
 }
 \seealso{
-\link{linkres}, \code{\link[=lod]{lod()}}, \code{\link[=merlin]{merlin()}},
-}
-\author{
-Magnus Dehli Vigeland
+\link{linkres}, \code{\link[=lod]{lod()}}, \code{\link[=merlinLod]{merlinLod()}}
 }

@@ -118,6 +118,3 @@ merlinLod(x, aff = 3:5, model = diseaseModel("XR"))
 \seealso{
 \code{\link[=lod]{lod()}}
 }
-\author{
-Magnus Dehli Vigeland
-}

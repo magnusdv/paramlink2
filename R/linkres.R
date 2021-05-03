@@ -11,7 +11,8 @@
 #' @param xlab,ylab Axis labels.
 #' @param \dots further arguments.
 #'
-#' @author Magnus Dehli Vigeland
+#' @return These functions are called for their side effects.
+#'
 #' @seealso [lod()], [merlinLod()], [lodPeaks()]
 #'
 #' @examples

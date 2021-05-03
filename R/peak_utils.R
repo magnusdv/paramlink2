@@ -1,6 +1,6 @@
 #' LOD score peaks
 #'
-#' Identify and summarise LOD score peaks
+#' Identify and summarise LOD score peaks.
 #'
 #' A peak is defined as a run of at least `width` consecutive markers with LOD
 #' score above or equal to `threshold`. If possible, one flanking marker is
@@ -13,20 +13,19 @@
 #'   name, chromosome and physical position.
 #'
 #' @return A list of data frames.
-#' @author Magnus Dehli Vigeland
 #'
-#' @seealso [linkres], [lod()], [merlin()],
+#' @seealso [linkres], [lod()], [merlinLod()]
 #'
 #' @examples
 #'
-#' ## Use built-in dataset `dominant1`
-#' x = dominant1$ped
-#' aff = dominant1$aff
-#' res = lod(x, aff, model = diseaseModel("AD"))
+#' # Use built-in dataset `dominant1`
+#' lods = lod(x = dominant1$ped,
+#'            aff = dominant1$aff,
+#'            model = diseaseModel("AD"))
 #'
 #' # All peaks above LOD = 1.5
-#' lodPeaks(res, threshold = 1.5)
-#' peakSummary(res, threshold = 1.5)
+#' lodPeaks(lods, threshold = 1.5)
+#' peakSummary(lods, threshold = 1.5)
 #'
 #' @export
 lodPeaks = function(x, threshold, width = 1) {

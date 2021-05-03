@@ -1,19 +1,22 @@
 #' Disease models for linkage analysis
 #'
 #' Create a disease model in form of a `disModel` object, for use in e.g.
-#' [lod()]
+#' [lod()].
 #'
 #'
 #' @param model An existing `disModel` object (to be modified by other
-#'   arguments), or one of the integers 1-4:
+#'   arguments), or one of the following two-letter keywords:
 #'
-#'   * 1 = autosomal dominant; fully penetrant, dfreq = 1e-5
+#'   * `AD` = autosomal dominant
 #'
-#'   * 2 = autosomal recessive; fully penetrant, dfreq = 1e-5
+#'   * `AR` = autosomal recessive
 #'
-#'   * 3 = X-linked dominant; fully penetrant, dfreq = 1e-5
+#'   * `XD` = X-linked dominant
 #'
-#'   * 4 = X-linked recessive; fully penetrant, dfreq = 1e-5
+#'   * `XR` = X-linked recessive
+#'
+#'   In all of the above, the disease is assumed to be fully penetrant, and with
+#'   a disease allele frequency of 1e-5.
 #'
 #' @param chrom Either "AUTOSOMAL" or "X". Lower case versions are allowed and
 #'   will be converted automatically.
@@ -24,8 +27,8 @@
 #'
 #'   For X-linked models, a list of two vectors named `male` and `female`, of
 #'   lengths 2 and 3 respectively: `(f0, f1)` for males and `(f0, f1, f2)` for
-#'   females. Alternatively, each list entry may be a matrix or data frame (with the same
-#'   number of columns) where each row represents a liability class.
+#'   females. Alternatively, each list entry may be a matrix or data frame (with
+#'   the same number of columns) where each row represents a liability class.
 #'
 #' @param dfreq A number in `[0,1]`: The population frequency of the disease
 #'   allele.
@@ -33,7 +36,6 @@
 #' @return An object of class `disModel`, which is a list with entries `chrom`,
 #'   `penetrances` and `dfreq`.
 #'
-#' @author Magnus Dehli Vigeland
 #' @seealso [lod()]
 #'
 #' @examples

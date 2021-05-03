@@ -4,10 +4,11 @@
 #' specified markers, assuming a fixed recombination rate between the disease
 #' and each marker locus.
 #'
-#' The LOD score of a marker is defined as \deqn{LOD(\rho) = \log[10]
-#' \frac{L(\rho)}{L(0.5)}}{% LOD(\rho) = \log_10 L(\rho)/L(0.5)} where
-#' \eqn{L(\rho)} denotes the likelihood of the observed marker genotypes given a
-#' recombination ratio \eqn{\rho} between the marker and the disease locus.
+#' The LOD score of a marker is defined as \deqn{LOD(\rho) = \log
+#' \frac{L(\rho)}{L(0.5)}}{% LOD(\rho) = \log L(\rho)/L(0.5)} where the
+#' logarithms are base 10, and \eqn{L(\rho)} denotes the likelihood of the
+#' observed marker genotypes given a recombination ratio \eqn{\rho} between the
+#' marker and the disease locus.
 #'
 #' The likelihoods are computed with the **pedprobr** package.
 #'

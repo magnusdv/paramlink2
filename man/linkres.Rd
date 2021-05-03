@@ -38,6 +38,9 @@ in the plot.}
 
 \item{xlab, ylab}{Axis labels.}
 }
+\value{
+These functions are called for their side effects.
+}
 \description{
 Functions for printing, summarizing and plotting the results of a linkage
 analysis.
@@ -65,7 +68,4 @@ plot(lods)
 }
 \seealso{
 \code{\link[=lod]{lod()}}, \code{\link[=merlinLod]{merlinLod()}}, \code{\link[=lodPeaks]{lodPeaks()}}
-}
-\author{
-Magnus Dehli Vigeland
 }
