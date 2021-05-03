@@ -73,6 +73,11 @@ merlinLod = function(x, aff, model, map = NULL, markers = NULL,
                      maxOnly = NA, options = "", dir = tempdir(),
                      cleanup = TRUE, verbose = FALSE, ...) {
 
+  # Allow longer warning messages (from MERLIN)
+  old = options()
+  on.exit(options(old))
+  options(warning.length = 8000L)
+
   if (!is.null(markers))
     x = selectMarkers(x, markers)
 
