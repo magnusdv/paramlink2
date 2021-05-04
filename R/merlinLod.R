@@ -47,7 +47,7 @@
 #' # Requires MERLIN to be installed
 #' #---------------------------------
 #'
-#' if(nzchar(Sys.which("merlin"))) {
+#' if(pedprobr::checkMerlin()) {
 #'
 #' # Pedigree with a single marker
 #' x = nuclearPed(3, sex = c(1,2,2))
@@ -65,13 +65,18 @@
 #'
 #' }
 #'
-#' @importFrom pedprobr merlin
+#' @importFrom pedprobr merlin checkMerlin
 #' @importFrom utils read.table
 #' @export
 merlinLod = function(x, aff, model, map = NULL, markers = NULL,
                      rho = 0, liability = NULL,
                      maxOnly = NA, options = "", dir = tempdir(),
                      cleanup = TRUE, verbose = FALSE, ...) {
+
+  if(!pedprobr::checkMerlin()) {
+    message("MERLIN executible not found. Please consult the documentation.")
+    return()
+  }
 
   # Allow longer warning messages (from MERLIN)
   old = options()
@@ -110,7 +115,7 @@ merlinLod = function(x, aff, model, map = NULL, markers = NULL,
 
   # Singlepoint analysis
   if(singlepoint && rho > 0) {
-    pos = as.numeric(map[1, 3]) - 50 * log(1 - 2 * rho)  #Haldane's map: Converting rec.fractions to cM positions.
+    pos = as.numeric(map[1, 3]) - 50 * log(1 - 2 * rho)  # Haldane's map: Converting rec.fractions to cM positions.
     options = paste0(options, " --positions:", paste0(pos, collapse = ","))
   }
 

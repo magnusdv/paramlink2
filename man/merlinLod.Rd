@@ -93,7 +93,7 @@ returned in R as a \link{linkres} object.
 # Requires MERLIN to be installed
 #---------------------------------
 
-if(nzchar(Sys.which("merlin"))) {
+if(pedprobr::checkMerlin()) {
 
 # Pedigree with a single marker
 x = nuclearPed(3, sex = c(1,2,2))
