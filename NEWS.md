@@ -1,6 +1,6 @@
 # paramlink2 1.0.4
 
-* Minor maintenance updates
+This is a maintenance release with no visible changes
 
 
 # paramlink2 1.0.3
