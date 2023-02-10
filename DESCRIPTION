@@ -1,24 +1,21 @@
-Package: paramlink2
 Type: Package
+Package: paramlink2
 Title: Parametric Linkage Analysis
 Version: 1.0.3
-Authors@R: person("Magnus Dehli", "Vigeland", 
-                  email = "m.d.vigeland@medisin.uio.no", 
-                  role = c("aut", "cre"),
-                  comment = c(ORCID = "0000-0002-9134-4962"))
-Description: Parametric linkage analysis of monogenic traits in medical 
-    pedigrees. Features include singlepoint analysis, multipoint analysis via 
-    'MERLIN' (Abecasis et al. (2002) <doi:10.1038/ng786>), visualisation of 
-    log of the odds (LOD) scores and summaries of linkage peaks. Disease models
-    may be specified to  accommodate phenocopies, reduced penetrance and 
-    liability classes. 'paramlink2' is part of the 'ped suite' package 
-    ecosystem, presented in 'Pedigree Analysis in R' (Vigeland, 2021, 
-    ISBN:9780128244302).
+Authors@R: 
+    person("Magnus Dehli", "Vigeland", , "m.d.vigeland@medisin.uio.no", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-9134-4962"))
+Description: Parametric linkage analysis of monogenic traits in medical
+    pedigrees. Features include singlepoint analysis, multipoint analysis
+    via 'MERLIN' (Abecasis et al. (2002) <doi:10.1038/ng786>),
+    visualisation of log of the odds (LOD) scores and summaries of linkage
+    peaks. Disease models may be specified to accommodate phenocopies,
+    reduced penetrance and liability classes. 'paramlink2' is part of the
+    'ped suite' package ecosystem, presented in 'Pedigree Analysis in R'
+    (Vigeland, 2021, ISBN:9780128244302).
 License: GPL-3
 URL: https://github.com/magnusdv/paramlink2
-Encoding: UTF-8
-Language: en-GB
-LazyData: true
+BugReports: https://github.com/magnusdv/paramlink2/issues
 Depends: 
     R (>= 3.5),
     pedtools
@@ -27,8 +24,10 @@ Imports:
 Suggests: 
     spelling,
     testthat
-SystemRequirements: MERLIN (http://csg.sph.umich.edu/abecasis/merlin/index.html) 
-    for multipoint linkage analysis.
+Encoding: UTF-8
+Language: en-GB
+LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
-BugReports: https://github.com/magnusdv/paramlink2/issues
+RoxygenNote: 7.2.3
+SystemRequirements: MERLIN (https://csg.sph.umich.edu/abecasis/merlin/)
+    for multipoint linkage analysis.
