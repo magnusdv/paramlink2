@@ -71,10 +71,8 @@ The likelihoods are computed with the \strong{pedprobr} package.
 }
 \examples{
 
-x = nuclearPed(2)
-x = setMarkers(x, marker(x))
-genotype(x, 1, c(1,2:4)) = 1:2
-genotype(x, 1, 2) = 1
+x = nuclearPed(2) |>
+  addMarker(geno = c("1/2", "1/1", "1/2", "1/2"))
 
 aff = c(2,1,2,2)
 model = diseaseModel(model = "AD")

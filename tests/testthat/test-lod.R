@@ -1,7 +1,7 @@
 
 test_that("lod() catches bad `aff` input", {
-  x = nuclearPed(1)
-  x = setMarkers(x, marker(x))
+  x = nuclearPed(1) |>
+    addMarker()
 
   mod = diseaseModel("AD")
 
@@ -14,8 +14,8 @@ test_that("lod() catches bad `aff` input", {
 
 
 test_that("lod() with liability classes", {
-  x = nuclearPed(3)
-  x = setMarkers(x, marker(x, geno = c("1/2", "1/1", "1/2","1/2","1/2")))
+  x = nuclearPed(3) |>
+    addMarker(geno = c("1/2", "1/1", "1/2","1/2","1/2"))
 
   mod = diseaseModel("AD", pen = data.frame(f0 = 0, f1 = 1:0, f2 = 1:0))
 

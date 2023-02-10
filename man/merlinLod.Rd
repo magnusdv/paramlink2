@@ -96,8 +96,8 @@ returned in R as a \link{linkres} object.
 if(pedprobr::checkMerlin()) {
 
 # Pedigree with a single marker
-x = nuclearPed(3, sex = c(1,2,2))
-x = setMarkers(x, marker(x, geno = c("1/1", "1/2", "1/2", "1/2", "1/2")))
+x = nuclearPed(3, sex = c(1,2,2)) |>
+  addMarker(geno = c("1/1", "1/2", "1/2", "1/2", "1/2"))
 
 # Simple AD model
 merlinLod(x, aff = 2:5, model = diseaseModel("AD"))
@@ -113,7 +113,7 @@ merlinLod(x, aff = 3:5, model = diseaseModel("XR"))
 
 }
 \references{
-\url{http://csg.sph.umich.edu/abecasis/Merlin/}
+\url{https://csg.sph.umich.edu/abecasis/merlin/}
 }
 \seealso{
 \code{\link[=lod]{lod()}}

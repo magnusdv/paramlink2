@@ -33,7 +33,7 @@
 #'
 #' @seealso [lod()]
 #'
-#' @references \url{http://csg.sph.umich.edu/abecasis/Merlin/}
+#' @references \url{https://csg.sph.umich.edu/abecasis/merlin/}
 #'
 #' @return If the number of markers is 1, or if `maxOnly = TRUE`, a single
 #'   number is returned.
@@ -50,8 +50,8 @@
 #' if(pedprobr::checkMerlin()) {
 #'
 #' # Pedigree with a single marker
-#' x = nuclearPed(3, sex = c(1,2,2))
-#' x = setMarkers(x, marker(x, geno = c("1/1", "1/2", "1/2", "1/2", "1/2")))
+#' x = nuclearPed(3, sex = c(1,2,2)) |>
+#'   addMarker(geno = c("1/1", "1/2", "1/2", "1/2", "1/2"))
 #'
 #' # Simple AD model
 #' merlinLod(x, aff = 2:5, model = diseaseModel("AD"))
