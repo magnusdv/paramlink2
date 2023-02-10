@@ -14,7 +14,7 @@ status](https://www.r-pkg.org/badges/version/paramlink2)](https://CRAN.R-project
 The goal of **paramlink2** is to perform parametric linkage analysis in
 medical pedigrees. Both singlepoint and multipoint LOD scores are
 supported (the latter requires
-[MERLIN](http://csg.sph.umich.edu/abecasis/merlin/)). The package
+[MERLIN](https://csg.sph.umich.edu/abecasis/merlin/)). The package
 includes tools for visualising LOD scores and summarising peaks for use
 in downstream analysis.
 
@@ -25,7 +25,7 @@ R](https://www.elsevier.com/books/pedigree-analysis-in-r/vigeland/978-0-12-82443
 linkage analysis, and includes a detailed worked example using
 **paramlink2**.
 
-As hinted to by the package name, **paramlink2** is a re-instalment of
+As hinted to by the package name, **paramlink2** is a reinstalment of
 [paramlink](https://CRAN.R-project.org/package=paramlink), which is no
 longer actively developed. The two version are not compatible, and all
 new users are recommended to use **paramlink2**.
@@ -60,7 +60,7 @@ at 248 SNP markers on chromosome 1. We will perform parametric linkage
 analysis on the dataset, hoping to identify a genomic region linked to
 the disease locus.
 
-<img src="man/figures/README-dominant1Ped-1.png" width="75%" style="display: block; margin: auto;" />
+<img src="man/figures/README-dominant1Ped-1.png" width="80%" style="display: block; margin: auto;" />
 
 The dataset contains three elements: `ped`, `aff` and `map`. For
 simplicity we store these in separate variables:
@@ -71,7 +71,7 @@ aff = dominant1$aff
 map = dominant1$map
 ```
 
-The pedigree plot above is produced by the command
+The pedigree plot above was produced with the command
 
 ``` r
 plot(ped, aff = aff, starred = typedMembers)
@@ -99,13 +99,17 @@ Singlepoint LOD scores for the family are now computed as follows:
 
 ``` r
 lods = lod(ped, aff = aff, model = modAD)
+```
 
+The `summary()` function prints the highest score:
+
+``` r
 summary(lods)
 #> Max LOD score: 2.533179 
 #> Achieved at marker(s): m47
 ```
 
-Calling `plot()` on the output produces a nice graph of the LOD scores:
+Furthermore, `plot()` produces a nice graph of the LOD scores:
 
 ``` r
 plot(lods)
@@ -147,4 +151,4 @@ peakSummary(lodsM, threshold = 2)
 ```
 
 In other words, the disease locus is most likely somewhere on chromosome
-1 between 34 Mb and 56 Mb!
+1 between 34 Mb and 56 Mb.
