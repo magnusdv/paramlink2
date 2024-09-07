@@ -21,7 +21,7 @@ in downstream analysis.
 **paramlink2** is part of the
 [pedsuite](https://magnusdv.github.io/pedsuite/) collection of packages
 for pedigree analysis in R, featured in the book [Pedigree Analysis in
-R](https://www.elsevier.com/books/pedigree-analysis-in-r/vigeland/978-0-12-824430-2)
+R](https://magnusdv.github.io/pedsuite/articles/web_only/publications.html)
 (Vigeland, 2021). Chapter 9 of this book gives an introduction to
 linkage analysis, and includes a detailed worked example using
 **paramlink2**.
