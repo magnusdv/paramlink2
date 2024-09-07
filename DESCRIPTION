@@ -28,6 +28,6 @@ Encoding: UTF-8
 Language: en-GB
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
 SystemRequirements: MERLIN (https://csg.sph.umich.edu/abecasis/merlin/)
     for multipoint linkage analysis.
