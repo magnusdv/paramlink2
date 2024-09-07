@@ -7,16 +7,19 @@
 \format{
 A list with 3 elements:
 \itemize{
-\item \code{ped}: A \link[pedtools:ped]{pedtools::ped} object describing a pedigree with 19 individuals, including genotypes for 14 members at 248 markers on Chromosome 1.
+\item \code{ped}: A \link[pedtools:ped]{pedtools::ped} object describing a pedigree with 19 individuals,
+including genotypes for 14 members at 248 markers on Chromosome 1.
 \item \code{aff}: A vector indicating the affected pedigree members.
-\item \code{map}: A data frame with 3 columns (\code{chrom}, \code{marker}, \code{cm}) describing the centiMorgan positions of the markers.
+\item \code{map}: A data frame with 3 columns (\code{chrom}, \code{marker}, \code{cm}) describing the
+centiMorgan positions of the markers.
 }
 }
 \usage{
 dominant1
 }
 \description{
-A dataset with SNP genotypes for 14 members of a pedigree affected with a dominant disorder.
+A dataset with SNP genotypes for 14 members of a pedigree affected with a
+dominant disorder.
 }
 \examples{
 
