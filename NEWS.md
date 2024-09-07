@@ -1,4 +1,4 @@
-# paramlink2 1.0.5
+# paramlink2 1.0.6
 
 Maintenance release with only minor changes to the package documentation.
 
