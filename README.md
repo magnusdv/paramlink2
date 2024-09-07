@@ -18,17 +18,18 @@ supported (the latter requires
 includes tools for visualising LOD scores and summarising peaks for use
 in downstream analysis.
 
-**paramlink2** is part of the **ped suite** collection of packages for
-pedigree analysis in R, featured in the book [Pedigree Analysis in
+**paramlink2** is part of the
+[pedsuite](https://magnusdv.github.io/pedsuite/) collection of packages
+for pedigree analysis in R, featured in the book [Pedigree Analysis in
 R](https://www.elsevier.com/books/pedigree-analysis-in-r/vigeland/978-0-12-824430-2)
 (Vigeland, 2021). Chapter 9 of this book gives an introduction to
 linkage analysis, and includes a detailed worked example using
 **paramlink2**.
 
-As hinted to by the package name, **paramlink2** is a reinstalment of
+As the package name suggests, **paramlink2** is a reimplementation of
 [paramlink](https://CRAN.R-project.org/package=paramlink), which is no
-longer actively developed. The two version are not compatible, and all
-new users are recommended to use **paramlink2**.
+longer actively maintained. The two version are not compatible, and all
+users are strongly recommended to use **paramlink2**.
 
 ## Installation
 
@@ -39,11 +40,10 @@ as follows:
 install.packages("paramlink2")
 ```
 
-Alternatively, you can obtain the latest development version from
-GitHub:
+Alternatively, get the latest development version from GitHub:
 
 ``` r
-# install.packages("devtools") # install devtools if needed
+# install.packages("devtools")
 devtools::install_github("magnusdv/paramlink2")
 ```
 
